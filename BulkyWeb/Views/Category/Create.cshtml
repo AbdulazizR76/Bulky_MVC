@@ -4,7 +4,7 @@
     <div class="border p-3 mt-4">
         <h1 class="text-primary">Create Category</h1>
         <hr />
-    <div class="text-danger" asp-validation-summary="All"></div>
+    @* <div class="text-danger" asp-validation-summary="ModelOnly"></div> *@
     <div class="mb-3 row p-1">
         <label asp-for=Name class="p-0"></label>
         <input asp-for=Name class="form-control"/>
@@ -31,3 +31,8 @@
 
 
 </form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
