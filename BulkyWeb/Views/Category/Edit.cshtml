@@ -1,6 +1,8 @@
 ﻿@model Category
 
 <form method="post">
+    @* we don't have to add hidden fild becuse the name of it is Id , if we name it CategoryId then we must add it , for us now it's optional *@
+    @* <input asp-for="Id" hidden /> *@
     <div class="border p-3 mt-4">
         <h1 class="text-primary">Edit Category</h1>
         <hr />
