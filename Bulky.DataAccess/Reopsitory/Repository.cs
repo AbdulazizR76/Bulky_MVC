@@ -1,8 +1,8 @@
-﻿using Bulky.DataAccess.Data;
-using Bulky.DataAccess.Reopsitory.IRepository;
+﻿using BulkyBook.DataAccess.Data;
+using BulkyBook.DataAccess.Reopsitory.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-namespace Bulky.DataAccess.Reopsitory
+namespace BulkyBook.DataAccess.Reopsitory
 {
     public class Repository<T> : IRepository<T> where T : class
     {

@@ -1,8 +1,8 @@
-﻿using Bulky.DataAccess.Reopsitory.IRepository;
-using Bulky.Models;
+﻿using BulkyBook.DataAccess.Reopsitory.IRepository;
+using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyWeb.Controllers
+namespace BulkyBookWeb.Controllers
 {
     public class CategoryController : Controller
     {
