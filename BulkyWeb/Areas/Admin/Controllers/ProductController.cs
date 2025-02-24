@@ -8,7 +8,6 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
-
         public ProductController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
