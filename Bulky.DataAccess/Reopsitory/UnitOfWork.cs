@@ -20,5 +20,26 @@ namespace BulkyBook.DataAccess.Reopsitory
         {
             _db.SaveChanges();
         }
+
+        public string GenerateRandomISBN()
+        {
+            string prefix = "SOTJ";
+            Random random = new Random();
+
+            string randomNumbers = "";
+            for (int i = 0; i < 10; i++)
+            {
+                randomNumbers += random.Next(0, 10);
+            }
+
+            string lastTwo = "";
+            for (int i = 0; i < 2; i++)
+            {
+                lastTwo += random.Next(0, 10);
+            }
+            return $"{prefix}{randomNumbers}{lastTwo}";
+        }
+
+
     }
 }

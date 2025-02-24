@@ -7,5 +7,7 @@
 
         void Save();
 
+        string GenerateRandomISBN();
+
     }
 }
