@@ -1,6 +1,7 @@
 ﻿using BulkyBook.DataAccess.Reopsitory.IRepository;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
@@ -16,6 +17,13 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+
+            // using Projections to dynamically select the fields we want to display
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+            {
+                Text = i.Name,
+                Value = i.Id.ToString()
+            });
             return View(objProductList);
         }
 
