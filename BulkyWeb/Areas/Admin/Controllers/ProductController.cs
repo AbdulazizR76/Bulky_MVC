@@ -3,6 +3,7 @@ using BulkyBook.Models;
 using BulkyBook.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Primitives;
 
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
@@ -10,9 +11,12 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
-        public ProductController(IUnitOfWork unitOfWork)
+        // we use this to access the wwwroot folder
+        private readonly IWebHostEnvironment _webHostingEnvironment;
+        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostingEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _webHostingEnvironment = webHostingEnvironment;
         }
 
         public IActionResult Index()
@@ -56,6 +60,19 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             
             if (ModelState.IsValid)
             {
+                string wwwRootPath = _webHostingEnvironment.WebRootPath;
+
+                if(file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString()+ Path.GetExtension(file.FileName);
+                    string productPath = Path.Combine(wwwRootPath + @"\images\product");
+
+                    using(var fileStream= new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
+                }
                 _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product created successfully";
