@@ -86,7 +86,6 @@ namespace BulkyBook.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("ListPrice")
@@ -172,7 +171,7 @@ namespace BulkyBook.DataAccess.Migrations
                         {
                             Id = 5,
                             Author = "Ron Parker",
-                            CategoryId = 4,
+                            CategoryId = 3,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "SOTJ1111111101",
                             ImageUrl = "",
@@ -186,7 +185,7 @@ namespace BulkyBook.DataAccess.Migrations
                         {
                             Id = 6,
                             Author = "Laura Phantom",
-                            CategoryId = 5,
+                            CategoryId = 2,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "FOT000000001",
                             ImageUrl = "",
