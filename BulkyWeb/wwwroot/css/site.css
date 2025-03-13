@@ -299,9 +299,7 @@ bg-success {
     .btn-check:focus + .btn-danger, .btn-danger:focus {
         color: #fff;
         background-color: #d9534f;
-        ;
         border-color: #d9534f;
-        ;
         box-shadow: 0 0 0 0.25rem rgba(223, 109, 105, 0.5);
     }
 
@@ -537,3 +535,12 @@ bg-success {
         background-color: #578553;
         border-color: #578553;
     }
+
+
+.fixed-img {
+    width: 100%;
+    height: 250px; /* Ensures all images have the same height */
+    object-fit: cover; /* Ensures the image fills the space without stretching */
+    display: block;
+}
+
