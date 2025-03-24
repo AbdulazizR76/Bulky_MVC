@@ -8,18 +8,16 @@ using System.Threading.Tasks;
 
 namespace BulkyBook.DataAccess.Reopsitory.IRepository
 {
-    internal class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
+    internal class CompanyRepository : Repository<Company>, ICompanyRepository
     {
         private ApplicationDbContext _db;
-        public ShoppingCartRepository(ApplicationDbContext db) : base(db)
+        public CompanyRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
-        public void Update(ShoppingCart Obj)
+        public void Update(Company Obj)
         {
-            _db.ShoppingCarts.Update(Obj);
+            _db.Companies.Update(Obj);
         }
-
-
     }
 }

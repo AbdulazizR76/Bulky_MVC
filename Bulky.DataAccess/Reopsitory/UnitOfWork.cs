@@ -10,6 +10,7 @@ namespace BulkyBook.DataAccess.Reopsitory
         public IProductRepository Product { get; private set; }
 
         public ICompanyRepository Company { get; private set; }
+        public IShoppingCartRepository ShoppingCart { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -17,6 +18,7 @@ namespace BulkyBook.DataAccess.Reopsitory
             Category = new CategoryRepository(_db);
             Product = new ProductRepository(_db);
             Company = new CompanyRepository(_db);
+            ShoppingCart = new ShoppingCartRepository(_db);
         }
 
 
