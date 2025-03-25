@@ -2,6 +2,7 @@
 using BulkyBook.DataAccess.Reopsitory.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 namespace BulkyBook.DataAccess.Reopsitory
 {
     public class Repository<T> : IRepository<T> where T : class
@@ -21,9 +22,21 @@ namespace BulkyBook.DataAccess.Reopsitory
             dbSet.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query;
+            if (tracked == true)
+            {
+                query = dbSet;
+               
+
+            }
+            else
+            {
+                query= dbSet.AsNoTracking();
+                
+            }
+            query = query.Where(filter);
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var includeProp in includeProperties
@@ -34,6 +47,7 @@ namespace BulkyBook.DataAccess.Reopsitory
             }
             query = query.Where(filter);
             return query.FirstOrDefault();
+
         }
 
         //Category, CoverType
