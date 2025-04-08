@@ -27,23 +27,61 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                 ShoppingCartList = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId, includeProperties: "Product"),
                 OrderTotoal = 0
             };
-            foreach(var cart in ShoppingCartVM.ShoppingCartList)
+            foreach (var cart in ShoppingCartVM.ShoppingCartList)
             {
-                cart.Price  = GetPriceBasedOnQuantity(cart);
+                cart.Price = GetPriceBasedOnQuantity(cart);
                 ShoppingCartVM.OrderTotoal += (cart.Price * cart.Count);
             }
             return View(ShoppingCartVM);
         }
 
-        private double GetPriceBasedOnQuantity (ShoppingCart shoppingCart)
+        public IActionResult Plus(int cartId)
         {
-            if(shoppingCart.Count <= 50)
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            cartFromDb.Count += 1;
+            _unitOfWork.ShoppingCart.Update(cartFromDb);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Minus(int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            if (cartFromDb.Count <= 1)
+            {
+                //remove from cart
+                _unitOfWork.ShoppingCart.Remove(cartFromDb);
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+
+            }
+            else
+            {
+                cartFromDb.Count -= 1;
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+
+            }
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Remove(int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            _unitOfWork.ShoppingCart.Remove(cartFromDb);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private double GetPriceBasedOnQuantity(ShoppingCart shoppingCart)
+        {
+            if (shoppingCart.Count <= 50)
             {
                 return shoppingCart.Product.Price;
             }
             else
             {
-                if(shoppingCart.Count <= 100)
+                if (shoppingCart.Count <= 100)
                 {
                     return shoppingCart.Product.Price50;
                 }
