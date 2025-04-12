@@ -120,6 +120,7 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
             {
                 // it is a regular customer account and we need to capture payment
                // strip logic 
+
             }
             return RedirectToAction(nameof(OrderConfirmation), new {id=ShoppingCartVM.OrderHeader.Id});
         }
