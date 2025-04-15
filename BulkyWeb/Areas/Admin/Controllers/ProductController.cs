@@ -12,7 +12,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
     //[Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
-        public readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         // we use this to access the wwwroot folder
         private readonly IWebHostEnvironment _webHostingEnvironment;
         public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostingEnvironment)
