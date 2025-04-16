@@ -15,7 +15,7 @@ namespace BulkyBook.Utility
 
         public const string StatusPending = "Pending";
         public const string StatusApproved = "Approved";
-        public const string StatusProcessing = "Processing";
+        public const string StatusInProcessing = "Processing";
         public const string StatusShipped = "Shipped";
         public const string StatusCancelled = "Cancelled";
         public const string StatusRefunded = "Refunded";
