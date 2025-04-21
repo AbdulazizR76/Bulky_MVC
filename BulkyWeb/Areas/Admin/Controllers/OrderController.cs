@@ -12,6 +12,7 @@ using System.Security.Claims;
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -64,9 +65,43 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             return RedirectToAction(nameof(Details),new {orderId= orderHeaderFromDb.Id});
         }
 
+        [HttpPost]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        public IActionResult StartProcessing()
+        {
+            _unitOfWork.OrderHeader.UpdateStatus(OrderVM.OrderHeader.Id, SD.StatusInProcessing);
+            _unitOfWork.Save();
+            TempData["success"] = "Order Details Updated Successfully";
+            return RedirectToAction(nameof(Details), new { orderId = OrderVM.OrderHeader.Id });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        public IActionResult ShipOrder()
+        {
+            var orderheaderFromDb = _unitOfWork.OrderHeader.Get(u => u.Id == OrderVM.OrderHeader.Id);
+
+            orderheaderFromDb.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
+            orderheaderFromDb.Carrier = OrderVM.OrderHeader.Carrier;
+            orderheaderFromDb.OrderStatus = SD.StatusShipped;
+            orderheaderFromDb.ShippingDate = DateTime.Now;
+            if (orderheaderFromDb.PaymentStatus == SD.PaymentStatusDelayedPayment)
+            {
+                orderheaderFromDb.PaymentDueDate = DateOnly.FromDateTime(DateTime.Now.AddDays(30));
+            }
+            _unitOfWork.OrderHeader.Update(orderheaderFromDb);
+            _unitOfWork.Save();
+
+            _unitOfWork.OrderHeader.UpdateStatus(OrderVM.OrderHeader.Id, SD.StatusShipped);
+            _unitOfWork.Save();
+            TempData["success"] = "Order Shipped Successfully";
+            return RedirectToAction(nameof(Details), new { orderId = OrderVM.OrderHeader.Id });
+        }
+
         #region API CALLS
 
         [HttpGet]
+        
         public IActionResult GetAll(string status)
         {
             IEnumerable<OrderHeader> objOrderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
