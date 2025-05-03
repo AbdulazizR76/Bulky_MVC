@@ -16,12 +16,14 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IEmailSender _emailSender;
+        private readonly IEmailService2 _emailService;
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
-        public CartController(IUnitOfWork unitOfWork,IEmailSender emailSender)
+        public CartController(IUnitOfWork unitOfWork,IEmailSender emailSender, IEmailService2 emailService)
         {
             _unitOfWork = unitOfWork;
             _emailSender = emailSender;
+            _emailService = emailService;
         }
         public IActionResult Index()
         {
@@ -183,7 +185,7 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                
             }
 
-            _emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order - Bulky Book",
+            _emailService.SendEmailAsync2(orderHeader.ApplicationUser.Email, "New Order - Bulky Book",
                 $"<p>New order created successfully - {orderHeader.Id} </p>");
 
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart
