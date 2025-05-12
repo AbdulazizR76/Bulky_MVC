@@ -35,9 +35,13 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         public IActionResult GetAll()
         {
             List<ApplicationUser> objUserList = _db.ApplicationUsers.Include(u => u.Company).ToList();
-
+            var userRoles = _db.UserRoles.ToList();
+            var roles = _db.Roles.ToList();
             foreach(var user in objUserList)
             {
+                var roleid = userRoles.FirstOrDefault(u => u.UserId == user.Id).RoleId;
+                user.Role = roles.FirstOrDefault(u => u.Id == roleid).Name;
+                
 
                 if (user.Company == null)
                 {
