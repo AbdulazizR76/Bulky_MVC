@@ -19,7 +19,7 @@ function loadDataTable() {
          { data: 'email', title: "email", "width": "15%" },  // ✅ Matches API response
          { data: 'phoneNumber', title: "PhoneNumber", "width": "15%" },  // ✅ Matches API response
          { data: 'company.name', title: "company", "width": "15%" },
-         { data: '', title: "", "width": "15%" },
+         { data: 'role', title: "role", "width": "15%" },
 
 
          {
