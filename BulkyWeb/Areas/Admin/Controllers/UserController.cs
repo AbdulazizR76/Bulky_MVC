@@ -72,6 +72,36 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             _db.SaveChanges();
             return Json(new { success = true, message = "Operation Successful" });
         }
+
+        [HttpGet]
+        public IActionResult RoleManagment(string userId)
+        {
+            string RoleId = _db.UserRoles.FirstOrDefault(u => u.UserId == userId).RoleId;
+
+            RoleManagementVM RoleVM = new RoleManagementVM()
+            {
+                ApplicationUser = _db.ApplicationUsers
+                .Include(u => u.Company)
+                .FirstOrDefault(u => u.Id == userId),
+
+                // Projection 
+                RoleList = _db.Roles.Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Name
+                }),
+                // Projection
+                CompanyList = _db.Companies.Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                })
+
+            };
+            // we need to set the role of the user
+            RoleVM.ApplicationUser.Role = _db.Roles.FirstOrDefault(u => u.Id == RoleId).Name;
+            return View(RoleVM);
+        }
         #endregion
 
     }
