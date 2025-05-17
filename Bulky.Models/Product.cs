@@ -44,5 +44,7 @@ namespace BulkyBook.Models
 
         public string? ImageUrl { get; set; }
 
+        public int TestProperty { get; set; }
+
     }
 }
