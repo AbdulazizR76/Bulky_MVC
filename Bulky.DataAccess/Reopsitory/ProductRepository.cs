@@ -26,10 +26,10 @@ namespace BulkyBook.DataAccess.Reopsitory
                 objFromDb.Price50 = obj.Price50;
                 objFromDb.Price100 = obj.Price100;
                 objFromDb.CategoryId = obj.CategoryId;
-                if (obj.ImageUrl != null)
-                {
-                    objFromDb.ImageUrl = obj.ImageUrl;
-                }
+                //if (obj.ImageUrl != null)
+                //{
+                //    objFromDb.ImageUrl = obj.ImageUrl;
+                //}
             }
         }
     }

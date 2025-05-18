@@ -42,9 +42,7 @@ namespace BulkyBook.Models
         [ValidateNever]
         public Category Category { get; set; }
 
-        public string? ImageUrl { get; set; }
-
-        public int TestProperty { get; set; }
+        
 
     }
 }
