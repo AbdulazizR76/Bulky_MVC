@@ -67,8 +67,8 @@
                         </div>
 
                         <div class="mb-3 row p-1">
-@*                             <label asp-for=Product.ImageUrl class="p-0"></label>
- *@                            <input type="file" name="file" class="form-control" />
+                            <label asp-for=Product.ProductImages class="p-0"></label>
+                            <input type="file" name="files" class="form-control" multiple />
 
                         </div>
 
@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-2">
                     @* <img src="@Model.Product.ImageUrl"  *@
-                    style="border-radius:5px; border:1px solid #bbb9b9; width:100%" />
+                    @* style="border-radius:5px; border:1px solid #bbb9b9; width:100%" /> *@
                 </div>
             </div>
            
