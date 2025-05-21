@@ -12,7 +12,7 @@
         <form method="post" class="row" enctype="multipart/form-data">
             @* @Html.HiddenFor(Model => Model.Product.ISBN) *@
             <input asp-for="Product.Id" hidden />
-@*             <input asp-for="Product.ImageUrl" hidden />
+            @*             <input asp-for="Product.ImageUrl" hidden />
  *@            <div class="row">
                 <div class="col-10">
                     <div class="border p-3">
@@ -96,8 +96,16 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    @* <img src="@Model.Product.ImageUrl"  *@
-                    @* style="border-radius:5px; border:1px solid #bbb9b9; width:100%" /> *@
+                    @if(Model.Product.ProductImages != null)
+                    {
+                        foreach(var image in Model.Product.ProductImages)
+                        {
+                            <div class="border p-1 m-2 text-center">
+                                <img src="@image.ImageUrl" style="border-radius:5px; border:1px solid #bbb9b9; width:100%" />
+                            </div>
+                        }
+                    }
+                    
                 </div>
             </div>
            
