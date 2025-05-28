@@ -42,5 +42,5 @@ This project is for educational purposes only.
 
 ## Screenshots
 
-![Home Page](BulkyBookWeb/screenshots/HomePage.png)
+![Home Page](BulkyBookWeb/screenshots/homepage.png)
 
