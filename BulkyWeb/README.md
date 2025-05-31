@@ -40,7 +40,5 @@ This project is based on the Udemy course:
 ## License
 This project is for educational purposes only.
 
-## Screenshots
 
-![Home Page](screenshots/homepage.png)
 
