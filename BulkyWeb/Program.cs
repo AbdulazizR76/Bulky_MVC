@@ -1,6 +1,6 @@
 using BulkyBook.DataAccess.Data;
-using BulkyBook.DataAccess.Reopsitory;
-using BulkyBook.DataAccess.Reopsitory.IRepository;
+using BulkyBook.DataAccess.Repository;
+using BulkyBook.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -8,6 +8,7 @@ using BulkyBook.Utility;
 using Stripe;
 using BulkyBook.DataAccess.DbInitializer;
 using BulkyBook.Models;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,7 @@ builder.Services.AddControllersWithViews();
 builder.Configuration.AddUserSecrets<Program>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Home")));
 
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
@@ -32,14 +33,19 @@ builder.Services.ConfigureApplicationCookie(option =>
 
 builder.Services.AddAuthentication().AddFacebook(option =>
 {
-    option.AppId = "709118511644639";
-    option.AppSecret = "9fd849a34d89dfbc697d8d18f4fe827d";
+    option.AppId = builder.Configuration["Facebook:appId"]!;
+    option.AppSecret = builder.Configuration["Facebook:appSecret"]!;
 });
+
+
+
+
 
 builder.Services.AddAuthentication().AddMicrosoftAccount(option =>
 {
-    option.ClientId = "61bfb876-4c07-4552-8552-8b75d8bc08da";
-    option.ClientSecret = "lsg8Q~srAVQzrS1XhiuI70Ynp7RX5k1OpAq2kcev";
+    option.ClientId = builder.Configuration["Microsoft:ClientId"]!;
+    option.ClientSecret = builder.Configuration["Microsoft:ClientSecret"]!;
+    option.CallbackPath = "/signin-microsoft";
 });
 
 
@@ -81,9 +87,7 @@ app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
-//app.MapControllerRoute(
-//    name: "admin",
-//    pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}");
+
 
 
 

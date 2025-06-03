@@ -1,4 +1,4 @@
-﻿using BulkyBook.DataAccess.Reopsitory.IRepository;
+﻿using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Utility;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

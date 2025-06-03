@@ -1,4 +1,4 @@
-﻿namespace BulkyBook.DataAccess.Reopsitory.IRepository
+﻿namespace BulkyBook.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {

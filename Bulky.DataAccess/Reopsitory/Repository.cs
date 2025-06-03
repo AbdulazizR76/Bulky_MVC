@@ -1,9 +1,9 @@
 ﻿using BulkyBook.DataAccess.Data;
-using BulkyBook.DataAccess.Reopsitory.IRepository;
+using BulkyBook.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-namespace BulkyBook.DataAccess.Reopsitory
+namespace BulkyBook.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {

@@ -1,7 +1,8 @@
 ﻿using BulkyBook.DataAccess.Data;
-using BulkyBook.DataAccess.Reopsitory.IRepository;
+using BulkyBook.DataAccess.Repository;
+using BulkyBook.DataAccess.Repository.IRepository;
 
-namespace BulkyBook.DataAccess.Reopsitory
+namespace BulkyBook.DataAccess.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {

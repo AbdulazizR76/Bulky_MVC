@@ -1,5 +1,5 @@
 ﻿using BulkyBook.DataAccess.Data;
-using BulkyBook.DataAccess.Reopsitory.IRepository;
+using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using BulkyBook.Models.ViewModels;
 using BulkyBook.Utility;

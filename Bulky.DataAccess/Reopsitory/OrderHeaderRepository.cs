@@ -1,8 +1,8 @@
 ﻿using BulkyBook.DataAccess.Data;
-using BulkyBook.DataAccess.Reopsitory.IRepository;
+using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 
-namespace BulkyBook.DataAccess.Reopsitory
+namespace BulkyBook.DataAccess.Repository
 {
     public class OrderHeaderRepository : Repository<OrderHeader>, IOrderHeaderRepository
     {
