@@ -10,6 +10,10 @@ This project demonstrates the implementation of a fully functional e-commerce pl
 - Admin panel for managing products, categories, and users
 - Role-based access control
 - Entity Framework Core with Repository and Unit of Work patterns
+- Stripe payment integration (test keys used)
+- Microsoft and Facebook authentication support
+- Email service integration using SMTP or SendGrid
+- Rich text editing with TinyMCE
 - Responsive UI with Bootstrap
 
 ## Technologies Used
@@ -21,26 +25,35 @@ This project demonstrates the implementation of a fully functional e-commerce pl
 - Bootstrap 5
 - LINQ
 - Razor Pages / Views
+- Stripe API
+- SendGrid (or custom SMTP)
+- Microsoft Identity Platform
+- TinyMCE (rich text editor)
 
 ## Getting Started
 
-1. Clone the repository: https://github.com/AbdulazizR76/Bulky_MVC.git  
-2. Open the solution in Visual Studio.  
-3. Configure the connection string in `appsettings.json`.  
-4. Apply migrations and update the database:  
-5. Run the application.
+1. Clone the repository:  
+   `https://github.com/AbdulazizR76/Bulky_MVC.git`
+
+2. Open the solution in Visual Studio.
+
+3. Ensure that you have **SQL Server Express** or higher installed.  
+   Update the connection string named `DefaultConnection` in `appsettings.json` with your own server details.
+
+4. Replace all placeholders in `appsettings.json` with valid credentials:
+   - Stripe API keys
+   - Facebook & Microsoft OAuth credentials
+   - SendGrid or SMTP email settings
+
 
 ## Certificate
 
 This project is based on the Udemy course:  
-ì.NET Core MVC ñ The Complete Guide 2025 [E-commerce]î by Bhrugen Patel  
+‚Äú.NET Core MVC ‚Äì The Complete Guide 2025 [E-commerce]‚Äù by Bhrugen Patel  
 [View Certificate](https://www.udemy.com/certificate/UC-eaa5d50e-15a1-4de4-a1e6-43f6fba3225b/)
 
 
 ## License
-This project is for educational purposes only.
+This project is for educational purposes .
 
-## Screenshots
-
-![Home Page](BulkyBookWeb/screenshots/homepage.png)
 
